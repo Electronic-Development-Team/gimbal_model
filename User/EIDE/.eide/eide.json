@@ -123,28 +123,16 @@
             "folders": []
           },
           {
-            "name": "USMART",
+            "name": "gimbal",
             "files": [
               {
-                "path": "../USMART/usmart.c"
+                "path": "../Cloud Platform/step_motor_port.c"
               },
               {
-                "path": "../USMART/usmart_config.c"
+                "path": "../Cloud Platform/gimbal_task.c"
               },
               {
-                "path": "../USMART/usmart_port.c"
-              },
-              {
-                "path": "../USMART/usmart_str.c"
-              },
-              {
-                "path": "../USMART/SYSTEM/sys/sys.c"
-              },
-              {
-                "path": "../USMART/SYSTEM/delay/delay.c"
-              },
-              {
-                "path": "../USMART/SYSTEM/usart/user_usart.c"
+                "path": "../Cloud Platform/gimbal.c"
               }
             ],
             "folders": []
@@ -282,7 +270,7 @@
                 "path": "../../Middlewares/littleFS/lfs.c"
               },
               {
-                "path": "../../Middlewares/littleFS/lfs_port.c"
+                "path": "../Middlewares/littleFS/lfs_port.c"
               },
               {
                 "path": "../../Middlewares/littleFS/lfs_util.c"
@@ -303,7 +291,35 @@
                 "path": "../../Middlewares/sfud/port/sfud_port.c"
               }
             ],
-            "folders": []
+            "folders": [
+              {
+                "name": "USMART",
+                "files": [
+                  {
+                    "path": "../USMART/usmart.c"
+                  },
+                  {
+                    "path": "../USMART/usmart_config.c"
+                  },
+                  {
+                    "path": "../USMART/usmart_port.c"
+                  },
+                  {
+                    "path": "../USMART/usmart_str.c"
+                  },
+                  {
+                    "path": "../USMART/SYSTEM/sys/sys.c"
+                  },
+                  {
+                    "path": "../USMART/SYSTEM/delay/delay.c"
+                  },
+                  {
+                    "path": "../USMART/SYSTEM/usart/user_usart.c"
+                  }
+                ],
+                "folders": []
+              }
+            ]
           }
         ]
       },
@@ -484,7 +500,8 @@
           "../USMART/SYSTEM/usart",
           ".cmsis/include",
           "../../MDK-ARM/RTE/_Downloads",
-          "../car_config"
+          "../car_config",
+          "../Cloud Platform"
         ],
         "libList": [],
         "defineList": [
