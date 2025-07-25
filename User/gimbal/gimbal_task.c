@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+#define SEND_DELAY_TIME 1
+
 // 任务队列和指针
 static GimbalTask_t gimbal_task_queue[GIMBAL_TASK_QUEUE_SIZE];
 static volatile uint8_t queue_head = 0;

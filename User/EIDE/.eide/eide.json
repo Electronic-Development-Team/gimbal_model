@@ -126,13 +126,13 @@
             "name": "gimbal",
             "files": [
               {
-                "path": "../Cloud Platform/step_motor_port.c"
+                "path": "../gimbal/step_motor_port.c"
               },
               {
-                "path": "../Cloud Platform/gimbal_task.c"
+                "path": "../gimbal/gimbal_task.c"
               },
               {
-                "path": "../Cloud Platform/gimbal.c"
+                "path": "../gimbal/gimbal.c"
               }
             ],
             "folders": []
@@ -501,7 +501,8 @@
           ".cmsis/include",
           "../../MDK-ARM/RTE/_Downloads",
           "../car_config",
-          "../Cloud Platform"
+          "../Cloud Platform",
+          "../gimbal"
         ],
         "libList": [],
         "defineList": [

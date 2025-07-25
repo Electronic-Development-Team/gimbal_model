@@ -37,6 +37,7 @@
 #include "car_config.h"
 #include "gray_detection.h"
 #include "lfs_port.h"
+#include "gimbal.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -143,7 +144,7 @@ int main(void)
   initialize_and_test_LittleFS();
   Before_Main();
 
-  HAL_TIM_Base_Start_IT(&htim12);
+  //! HAL_TIM_Base_Start_IT(&htim12);
   visual_reception_init();
 
 #if TEST_BEFORE_MAIN == 1
@@ -158,8 +159,8 @@ int main(void)
   {
     // Lcd_MenuTask();
     // visual_process_command();
+    test_gimbal();
     motor_speed_task_handler();
-    grey_sensor_Read();
 #if TEST_IN_MAIN == 1
     main_test();
 #endif
