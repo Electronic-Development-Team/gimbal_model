@@ -60,19 +60,19 @@ void test_gimbal(void)
   while (1)
   {
     // 指向第1卦限 (+, +, +)
-    gimbal_Control(10, 10, 10);
-    gimbal_delay_ms(3000);
+    gimbal_Control(10, 3.5, 50);
+    gimbal_delay_ms(1000);
 
     // 指向第4卦限 (+, -, +)
-    gimbal_Control(10, -10, 10);
-    gimbal_delay_ms(3000);
+    gimbal_Control(10, -4.5, 20);
+    gimbal_delay_ms(1000);
 
     // 指向第5卦限 (+, +, -)
-    gimbal_Control(10, 10, -10);
-    gimbal_delay_ms(3000);
+    gimbal_Control(10, 1.5, -5);
+    gimbal_delay_ms(1000);
 
     // 指向第8卦限 (+, -, -)
-    gimbal_Control(10, -10, -10);
-    gimbal_delay_ms(3000);
+    gimbal_Control(10, -7, -15);
+    gimbal_delay_ms(1000);
   }
 }

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-#define SEND_DELAY_TIME 1
+#define SEND_DELAY_TIME 10
 
 // 任务队列和指针
 static GimbalTask_t gimbal_task_queue[GIMBAL_TASK_QUEUE_SIZE];
@@ -18,9 +18,8 @@ static float current_elevation_deg = 0.0f;
 typedef enum
 {
   GIMBAL_TASK_IDLE,
-  GIMBAL_TASK_SETUP_MOTOR1,
-  GIMBAL_TASK_SETUP_MOTOR2,
-  GIMBAL_TASK_TRIGGER_SYNC,
+  GIMBAL_TASK_SEND_MOTOR1,
+  GIMBAL_TASK_SEND_MOTOR2,
   GIMBAL_TASK_WAITING
 } GimbalTaskState_t;
 
@@ -93,29 +92,21 @@ void gimbal_task_handler(void)
         s_elevation_rpm = MIN_MOTOR_SPEED_RPM;
       }
 
-      gimbal_task_state = GIMBAL_TASK_SETUP_MOTOR1;
+      gimbal_task_state = GIMBAL_TASK_SEND_MOTOR1;
     }
     break;
 
-  case GIMBAL_TASK_SETUP_MOTOR1:
-    Step_Motor_1_angle_Control(current_task->azimuth_deg, s_azimuth_rpm, true);
-    delay_end_time = HAL_GetTick() + SEND_DELAY_TIME; // SEND_DELAY_TIMEms延时确保指令发送
-    gimbal_task_state = GIMBAL_TASK_SETUP_MOTOR2;
+  case GIMBAL_TASK_SEND_MOTOR1:
+    Step_Motor_1_angle_Control(current_task->azimuth_deg, s_azimuth_rpm);
+    delay_end_time = HAL_GetTick() + SEND_DELAY_TIME;
+    gimbal_task_state = GIMBAL_TASK_SEND_MOTOR2;
     break;
 
-  case GIMBAL_TASK_SETUP_MOTOR2:
+  case GIMBAL_TASK_SEND_MOTOR2:
     if (HAL_GetTick() >= delay_end_time)
     {
-      Step_Motor_2_angle_Control(current_task->elevation_deg, s_elevation_rpm, true);
-      delay_end_time = HAL_GetTick() + SEND_DELAY_TIME; // SEND_DELAY_TIMEms延时
-      gimbal_task_state = GIMBAL_TASK_TRIGGER_SYNC;
-    }
-    break;
+      Step_Motor_2_angle_Control(current_task->elevation_deg, s_elevation_rpm);
 
-  case GIMBAL_TASK_TRIGGER_SYNC:
-    if (HAL_GetTick() >= delay_end_time)
-    {
-      Step_Motor_Sync_Start();
       // 更新当前位置为目标位置
       current_azimuth_deg = current_task->azimuth_deg;
       current_elevation_deg = current_task->elevation_deg;
