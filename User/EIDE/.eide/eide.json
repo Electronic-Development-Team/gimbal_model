@@ -270,10 +270,10 @@
                 "path": "../../Middlewares/littleFS/lfs.c"
               },
               {
-                "path": "../Middlewares/littleFS/lfs_port.c"
+                "path": "../../Middlewares/littleFS/lfs_util.c"
               },
               {
-                "path": "../../Middlewares/littleFS/lfs_util.c"
+                "path": "../../Middlewares/littleFS/lfs_port.c"
               }
             ],
             "folders": []
